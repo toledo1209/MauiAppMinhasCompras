@@ -25,7 +25,7 @@ public partial class EditarProduto : ContentPage
 
             };
 
-            await App.Db.Update(p);
+            await App.Db.Insert(p);
             await DisplayAlert("Sucesso!", "Registro Atualizado", "OK");
             await Navigation.PopAsync();
 

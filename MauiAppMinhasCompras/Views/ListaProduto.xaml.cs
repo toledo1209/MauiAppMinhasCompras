@@ -16,6 +16,7 @@ public partial class ListaProduto : ContentPage
 
     protected async override void OnAppearing()
     {
+        lista.Clear();
         try
         {
 
@@ -102,6 +103,7 @@ public partial class ListaProduto : ContentPage
     {
         try
         {
+
             Produto p = e.SelectedItem as Produto;
 
             Navigation.PushAsync(new Views.EditarProduto
