@@ -179,7 +179,9 @@ public partial class ListaProduto : ContentPage
             lst_produtos.IsRefreshing = false;
         }
 
-
-
     }
+
+
+
+
 }
