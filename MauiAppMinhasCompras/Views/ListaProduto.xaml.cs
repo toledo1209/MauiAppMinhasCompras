@@ -129,6 +129,36 @@ public partial class ListaProduto : ContentPage
 
     }
 
+    // Adicione aqui o método picker_categoria_SelectedIndexChanged
+    private async void picker_categoria_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            var picker = (Picker)sender;
+            string categoriaSelecionada = picker.SelectedItem.ToString();
+
+            lista.Clear();
+
+            List<Produto> produtosFiltrados;
+
+            if (categoriaSelecionada == "Todos")
+            {
+                produtosFiltrados = await App.Db.GetAll();
+            }
+            else
+            {
+                produtosFiltrados = await App.Db.GetByCategoria(categoriaSelecionada);
+            }
+
+            produtosFiltrados.ForEach(i => lista.Add(i));
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ops", ex.Message, "OK");
+        }
+    }
+
+
 
     private async void lst_produtos_Refreshing(object sender, EventArgs e)
     {
@@ -148,6 +178,8 @@ public partial class ListaProduto : ContentPage
         {
             lst_produtos.IsRefreshing = false;
         }
+
+
 
     }
 }
